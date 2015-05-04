@@ -1,0 +1,132 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/layouts/standard.xhtml">
+
+
+	<ui:define name="notes">
+		<p>
+			Clicking "Book" will launch the booking sub-flow (see the subflow
+			state in <strong>main-flow.xml</strong>).
+		</p>
+		<p>
+			The booking flow is protected with Spring Security (see the secured
+			attribute in <strong>booking-flow.xml</strong>).
+		</p>
+		<p>Clicking "Back to Search" will take you to the stateful search
+			results.</p>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form id="listOfPerson_form">
+
+			<p:dataTable id="tableOfPerson" var="person"
+				value="#{personPage.persons}" paginator="true" rows="10"
+				widgetVar="personsTable" selection="#{personPage.person}"
+				onRowSelectUpdate="editPerson" selectionMode="single"
+				emptyMessage="No persons found">  >
+				 
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Search ... " />
+						<p:inputText id="globalFilter" onkeyup="personsTable.filter()"
+							style="width:150px;text-align:left;" />
+					</p:outputPanel>
+				</f:facet>
+
+				<p:column filterBy="#{person.firstName}">
+					<f:facet name="header">
+						<h:outputText value="First name" />
+					</f:facet>
+					<h:outputText value="#{person.firstName}" />
+				</p:column>
+
+				<p:column filterBy="#{person.lastName}">
+					<f:facet name="header">
+						<h:outputText value="Last name" />
+					</f:facet>
+					<h:outputText value="#{person.lastName}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Street" />
+					</f:facet>
+					<h:outputText value="#{person.streetName}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Phone" />
+					</f:facet>
+					<h:outputText value="#{person.phoneNumber}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Mobile" />
+					</f:facet>
+					<h:outputText value="#{person.mobilePhoneNumber}" />
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="View" update="form:display"
+						oncomplete="newPerson.show()" />
+				</f:facet>
+
+			</p:dataTable>
+		</h:form>
+
+			<p:dialog header="New Person" widgetVar="newPerson" resizable="false"
+				width="500" showEffect="explode" hideEffect="explode">
+				<h:form id="newPerson_form">
+					<p:messages>
+						<h:panelGrid id="addPerson" columns="2">
+
+							<h:outputLabel for="firstname" value="First name" />
+							<p:inputText id="firstname"
+								value="#{personPage.person.firstName}" required="true"
+								maxlength="40" />
+
+							<h:outputLabel for="lastname" value="Last name" />
+							<p:inputText id="lastname" value="#{personPage.person.lastName}"
+								required="true" maxlength="40" />
+
+							<h:outputLabel for="birthday" value="Birthday" />
+							<p:calendar id="birthday" value="#{personPage.person.birthday}"
+								pattern="dd.MM.yyyy" maxlength="8" />
+
+							<h:outputLabel for="streetname" value="Street name" />
+							<p:inputText id="streetname"
+								value="#{personPage.person.streetName}" required="true"
+								maxlength="40" />
+
+							<h:outputLabel for="phonenumber" value="Phone" />
+							<p:inputText id="phonenumber"
+								value="#{personPage.person.phoneNumber}" required="true"
+								maxlength="10" />
+
+							<h:outputLabel for="mobilephonenumber" value="Mobile" />
+							<p:inputText id="mobilephonenumber"
+								value="#{personPage.person.mobilePhoneNumber}" maxlength="10" />
+
+							<p:commandButton id="saveButton" value="Save"
+								actionListener="#{personPage.save}"
+								update="listOfPerson_form editPerson" />
+
+							<p:commandButton id="clear" value="Clear"
+								action="#{personPage.newPerson}" update="addPerson" />
+
+							<p:commandButton id="delete" value="Delete"
+								action="#{personPage.delPerson}"
+								update="listOfPerson_form editPerson" />
+
+						</h:panelGrid>
+					</p:messages>
+				</h:form>
+			</p:dialog>
+	</ui:define>
+</ui:composition>

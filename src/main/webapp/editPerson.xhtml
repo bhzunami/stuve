@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+<f:view>
+
+  <h:form id="edit_form">
+    <h:panelGrid columns="3">
+
+    <h:outputLabel for="firstname" value="First name" />
+    <h:inputText id="firstname" value="#{personPage.person.firstName}"
+			required="true" maxlength="40" />
+			<h:message for="firstname" errorStyle="color:red"
+			showDetail="false" showSummary="true"/>
+    <h:outputLabel for="lastname" value="Last name" />
+    <h:inputText id="lastname" value="#{personPage.person.lastName}"
+			required="true" maxlength="40" />
+			<h:message for="lastname" />
+    <h:commandButton id="saveButton" value="Save"
+			action="#{personPage.save}" />
+    <h:commandButton id="newButton" value="New"
+			action="#{personPage.newPerson}" />
+
+</h:panelGrid>
+</h:form>
+</f:view>
+</body>
+</html>

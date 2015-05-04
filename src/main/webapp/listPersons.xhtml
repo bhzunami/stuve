@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"  
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+<f:view>
+
+  <h:form id="listPersons">
+    <h:panelGrid columns="3">
+    
+    	<f:facet name="header">
+    		<h:outputText value="List of Persons"/>
+    	</f:facet>
+    	<h:dataTable value="#{personPage.persons}" var="person">
+    		<h:column>
+    			<f:facet name="header">
+    				<h:outputText value="First Name"/>
+    			</f:facet>
+    			<h:outputText value="#{person.firstName}"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">
+    				<h:outputText value="Last Name"/>
+    			</f:facet>
+    			<h:outputText value="#{person.lastName}"/>
+    		</h:column>
+    		<h:column>
+    			<h:commandLink action="editPerson">
+    			<h:outputText value="edit"/>
+    			<f:setPropertyActionListener
+    				target="#{personPage.person}"
+    				value="#{person}" />
+    			</h:commandLink>
+    		</h:column>
+    		<h:column>
+    			<h:commandLink action="#{personPage.delPerson}">
+    			<h:outputText value="delete"/>
+    			<f:setPropertyActionListener
+    				target="#{personPage.person}"
+    				value="#{person}" />
+    			</h:commandLink>
+    		</h:column>
+    	</h:dataTable>
+    	 <h:commandButton id="newButton" value="New"
+			action="#{personPage.newPerson}" />
+
+	</h:panelGrid>
+  </h:form>
+</f:view>
+</body>
+</html>

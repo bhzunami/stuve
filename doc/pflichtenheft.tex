@@ -1,0 +1,186 @@
+%***************************************
+% PFLICHTENHEFT
+%***************************************
+\part{Pfilchtenheft}
+\newpage
+\section{Zielbestimmung}
+Das Programm sollte diese Ziele erreichen:
+%
+\begin{itemize}
+\item Das Programm kann Personen mit ihren zugehörigen Adressen auf einer
+zentralen Mysql-Datenbank abspeichern, bearbeiten und löschen.
+\item Das Programm kann von mehreren Personen gleichzeitig verwendet werden.
+\item Beim Starten holt sich das Programm die aktuelle Version des Datenbestands.
+\item Per Import-Funktion können Adressen von externen Programmen zum
+Beispiel einem LDAP-Server oder dem Mailclient Thunderbird importieren
+werden.
+\item Personen können zu Kursen zb: verschiedene Weiterbildungskurse
+hinzugefügt werden.
+\item Personen können in verschiedenen Gruppen zB: 'Manager', 'Chef' usw.
+zugeteilt werden.
+\item Eine Personensuche erleichtert das Durchstöbern der Datenbank.
+\item Ein cleveres Error-Handling überprüft die Eingaben des Benutzers und kann
+im Falle eines Fehlers genau sagen, wo dieser liegt.
+\end{itemize}
+%
+\subsection{Muss Kriterien}
+Die Software muss folgende Anforderungen und Funktionen erfüllen:
+
+\begin{itemize}
+\item Neue Person abspeichern
+\item Bestehende Person bearbeiten
+\item Person(en) löschen
+\item Personen Gruppen zuordnen
+\item Personen suchen
+\item Neue Gruppen erstellen / bearbeiten
+\item Mails an ausgewählte Person(en) senden
+\item Listen von vordefinierten Filtern ausdrucken
+\item Error-Handling
+\end{itemize}
+%
+\subsection{Kann Kriterien}
+Die Software kann um folgende Funktionen erweitert werden:
+\begin{itemize}
+\item Benutzerschnittstelle mit anderen Programmen (LDAP, Mail-Client)
+\item Multiuser-System mit Locking
+\end{itemize}
+%
+\subsection{Abgrenzungskriterien}
+%
+\begin{itemize}
+\item Die Sicherheit der Daten wird über das Programm nicht gewährleistet, da die
+Daten auf einem zentralen Server abgelegt werden. Für diese ist der Benutzer
+selber verantwortlich.
+\item Wer das Programm startet, kann auch die Daten bearbeiten. Man muss sich
+nicht authentifizieren.
+\item Der Datenbankzugriff kann zu einem späteren Zeitpunkt nicht über eine
+Konfiguration abgeändert werden.
+\end{itemize}
+%***************************************
+% Einsatz
+%***************************************
+\section{Einsatz}
+Das Programm wird in der Firma zum Einsatz kommen. Es wird dort von den
+jeweiligen Mitarbeiter, die auf die Mitarbeiterdatenbank zugriff brauche verwendet. \\
+
+\subsection{Anwendungsbereiche}
+Das Programm wird verwendet, um die Firmenmitarbeiteradressen sowie auch
+Kundenadressen zu verwalten. Auch wird mit dem Programm Werbung von
+einzelnen Aktionen versendet.\\
+Es wird daher in der Firma selber verwendet.\\
+Das Programm darf von der Firma selber nicht an dritte weiter gegeben werden.
+\subsection{Zielgruppen}
+Das Programm wird von den Personen verwendet, die vorher mit der Access-
+Datenbank arbeiteten. Somit setzt das Programm normale Computerkenntnisse
+voraus.
+\section{Umgebung}
+Das Programm sollte auf mehreren Betriebssystemen laufen(Windows, Mac, Linux).
+Es erfordert eine normale Computer Umgebung, sprich funktionierendes
+Betriebssystem, auf dem Java Runtime installiert ist. Damit das Programm auf die
+Datenbank zugreifen kann, braucht es einen Computer, der als Server für die Mysql-
+Datenbank dient.
+%
+\subsection{Software}
+\begin{itemize}
+\item Java Virtual Machine (1.6)
+\item Funktionierendes Betriebssystem
+\item Zentrale Server mit Mysql als Datenbank.
+\end{itemize}
+%
+\subsection{Hardware}
+\begin{itemize}
+\item Computer der als Server dient.
+\item Computer der als Workstation dient.
+\end{itemize}
+%***************************************
+% FUNKTIONALITÄT
+%***************************************
+\section{Funktionalität}
+\subsection{Funktion 1: Personen speichern / bearbeiten}
+Es soll möglich sein eine Person mit diesen Attributen abzuspeichern / bearbeiten:
+\begin{multicols}{2}
+\begin{itemize}
+\item Name
+\item Vorname
+\item Geburtsdatum
+\item Strasse
+\item PLZ/Ort
+\item E-Mail
+\item E-Mail2
+\item Telefonnummer
+\item MobileNummer
+\item Notzitzen
+\item Gruppen Zuordnung
+\end{itemize}
+\end{multicols}
+Durch einen Knopf sollte die Person abgespeichert / bearbeitet werden können.
+%
+\subsection{Funktion 2: Überprüfung}
+Wird eine neue Person angelegt, oder eine bestehende bearbeitet, sollte dass
+Programm die Eingaben überprüfen.
+\subsection{Funktion 3: Personensuche}
+Damit Personen schnell gefunden werden, sollte es ein Such-Feld geben. Hier wäre
+es schön, wenn nach jedem Buchstaben, das Suchresultat aktualisiert wird. Das
+Suchresultat, sollte in einer übersichtlichen Tabelle/Liste angezeigt werden. Durch
+auswählen der Person, sollte man zu den Informationen gelangen.
+\subsection{Funktion 4: Personen löschen}
+Es sollte möglich sein, Person(en) zu löschen. Gewünschte Person(en) auswählen
+und per Knopfdruck löschen.
+\subsection{Funktion 5: Gruppen erstellen / bearbeiten}
+Jede Person kann einer oder mehreren Gruppen zugeteilt werden. Diese Gruppen
+sollten auch nachträglich bearbeitet werden können. Es sollte auch möglich sein,
+eine neue Gruppe zu erstellen.
+\subsection{Funktion 6: Mails versenden}
+Es sollte möglich sein einer Person direkt ein Mail zu senden. Wir legen auch
+grossen Wert auf Kundenkontakt. Deshalb sollte das Programm auch Newsletter
+bzw. Werbemail an unsere ausgewählten Kunden versenden.
+\subsection{Funktion 7: Reports erstellen}
+Damit wir einen guten Überblick über unsere Kunden haben, möchten wir unseren
+Kundenbestand ausdrucken. Das sollte am Besten im PDF-Format sein. Es wäre
+schön, wenn wir die Filterregeln vor jedem Export selber definieren könnten.
+\subsection{Funktion 8: Error-Handling}
+Das Programm sollte immer ein wachsames Auge über die Eingaben der Benutzer
+haben. Auch unserem geschulten Personal passieren Fehler. Diese sollten von dem
+Programm frühzeitig erkannt werden. Die Fehlermeldung sollte einfach zu verstehen
+sein.
+\subsection{Funktion 9: Module verwenden}
+Unsere Mitarbeiter können diverse Kurse besuchen. Es sollte möglich sein diese
+nachträglich den Mitarbeiter zuzuweisen.
+
+\subsection{typische Arbeitsabläufe}
+\begin{itemize}
+\item Ein neuer Kunde hat einen Service bestellt. Jetzt möchte man diese
+Kundendaten abspeichern, damit man später den Kunden kontaktieren kann.
+\item Der Kunde wechselt seinen Wohnort und teilt dies der Firma mit. Durch eine
+eindeutige Kundennummer, kann der Mitarbeiter den Kunden suchen und die
+Adresse bearbeiten.
+\item Damit man weiss, wer ein Kunde bzw. Lieferant ist, kann man die Personen in
+Gruppen unterteilen und sich dadurch eine Kundenliste erstellen.
+\item Unsere Firma hat gerade eine Aktion am Laufen und wir möchten unsere
+Kunden darauf aufmerksam machen. Per Knopfdruck lässt sich ein Mail an
+gewünschte Kunden versenden.
+\item Wir brauchen eine Liste von allen Lieferanten. Auch hier lässt sich einfach die
+gewünschten Informationen zusammenzustellen und als PDF exportieren.
+
+\end{itemize}
+\subsection{wichtige Selektionen}
+Es ist für die Firma wichtig, dass man die Personen, die man in der Datenbank
+abspeichert, unterteilen kann in Kunden, Mitarbeiter oder Lieferanten.
+%
+\section{Daten}
+Man fängt mit einem leeren Datenbestand an.
+Die zukünftigen Daten werden von der Firma selber gepflegt.
+\section{Benutzungsoberfläche}
+Die Benutzeroberfläche wird mit Swing gestaltet. Die Grösse der Applikation sollte
+nicht zu gross sein. Es sollte auf einem 17“ Monitor mit einer Auflösung von
+1280x1024 Platz haben.\\
+Es ist kein bestimmtes Drucklayout zu verwenden.\\
+Die Dialogstruktur sollte einfach und klar sein. Das heisst, dass es keine unnötigen
+und verwirrenden Dialoge haben soll.
+\section{Qualitätsziele}
+Das Programm sollte einfach zu bedienen und selbsterklärend sein. Der Benutzer
+sollte nicht mehr als eine Stunde brauchen, um sich zu Recht zu finden. Ein
+einfaches schlichtes Design sollte einen guten Überblick schaffen.\\
+Bei einem Fehler sollte ein schlaues Error-Handling den Benutzer auf den Fehler
+aufmerksam machen.
+\newpage

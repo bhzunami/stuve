@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Application context definition for PetClinic Datasource.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+				
+	<!-- ========================= DATASOURCE DEFINITION ========================= -->				
+
+    <!--DriverManagerDataSource class should only be used for testing purposes 
+        since it does not provide pooling and will perform poorly when 
+        multiple requests for a connection are made. -->
+ <bean id="dataSource" 
+   class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+    <property name="driverClassName" 
+        value="${hibernate.connection.driver_class}"/>
+    <property name="url" 
+        value="${hibernate.connection.url}"/>
+    <property name="username"
+    	value="${hibernate.connection.username}"/>
+    <property name="password"
+    	value="${hibernate.connection.password}"/>
+ </bean>
+
+ <bean id="sessionFactory" 
+   class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+   <property name="dataSource" ref="dataSource"/>
+   <property name="configLocation" 
+             value="classpath:hibernate.cfg.xml"/>
+   <property name="hibernateProperties">
+     <value>
+     	hibernate.dialect=${hibernate.dialect}
+		hibernate.hbm2ddl.auto=${hibernate.hbm2ddl.auto}
+		hibernate.generateDdl=${hibernate.generateDdl}
+		hibernate.showSql=${hibernate.show_sql}
+     </value>
+   </property>   
+ </bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<bean id="transactionManager" 
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager" >
+          <property name="sessionFactory" ref="sessionFactory" />
+          <!-- p:sessionFactory-ref="sessionFactory"/> -->
+    </bean>
+    
+ <!-- <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean> -->   
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
+
+	<!--
+		Activates various annotations to be detected in bean classes:
+		Spring's @Required and @Autowired, as well as JSR 250's @Resource.
+	-->
+	<context:annotation-config/>
+
+	<!--
+		Instruct Spring to perform declarative transaction management
+		automatically on annotated classes.
+	-->
+	<tx:annotation-driven/>
+
+<!-- *****************************************
+               DAO Classes  
+     ****************************************** -->
+ <bean id="functionDao" 
+   class="ch.fhnw.person.dao.FunctionDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+ </bean>
+
+ <bean id="personDao" 
+   class="ch.fhnw.person.dao.PersonDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+ </bean>
+ 
+ <bean id="addressDao" 
+   class="ch.fhnw.person.dao.AddressDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+ </bean>
+ 
+
+    
+<!-- *****************************************
+               Service Classes  
+     ****************************************** -->
+ <bean id="personService" 
+   class="ch.fhnw.person.service.PersonServiceImpl">
+        <property name="personDao" ref="personDao"/>
+ </bean>
+ 
+ <bean id="addressService" 
+   class="ch.fhnw.person.service.AddressServiceImpl">
+        <property name="addressDao" ref="addressDao"/>
+ </bean>
+ 
+ <bean id="functionService" 
+   class="ch.fhnw.person.service.FunctionServiceImpl">
+        <property name="functionDao" ref="functionDao"/>
+ </bean>
+
+<!-- *****************************************
+               Page Classes  
+     ****************************************** -->
+ <bean id="personPage" 
+   class="ch.fhnw.person.web.PersonPage">
+        <property name="personService" ref="personService"/>
+ </bean>
+ 
+  <bean id="addressPage" 
+   class="ch.fhnw.person.web.AddressPage">
+        <property name="addressService" ref="addressService"/>
+ </bean>
+ 
+ <bean id="functionPage" 
+   class="ch.fhnw.person.web.FunctionPage">
+        <property name="functionService" ref="functionService"/>
+ </bean>
+
+</beans>

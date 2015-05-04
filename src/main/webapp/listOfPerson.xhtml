@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<h:form id="listOfPerson_form">
+		<p:dataTable var="person" value="#{personPage.persons}">
+			<f:facet name="header">  
+            	List of Person  
+         	</f:facet>
+         	
+			<p:column sortBy="#{person.firstName}">
+				<f:facet name="header">
+                    <h:outputText value="First name" />
+            	</f:facet>
+				<h:outputText value="#{person.firstName}" />
+			</p:column>
+
+			<p:column sortBy="#{person.lastName}">
+				<f:facet name="header">
+    	        	<h:outputText value="Last name" />
+        	    </f:facet>
+				<h:outputText value="#{person.lastName}" />
+			</p:column>
+
+			<p:column sortBy="#{person.birthday}">
+				<f:facet name="header">
+    	        	<h:outputText value="Birthday" />
+        	    </f:facet>
+				<h:outputText value="#{person.birthday}" />
+			</p:column>
+
+			<p:column sortBy="#{person.streetName}">
+				<f:facet name="header">
+    	        	<h:outputText value="Street name" />
+        	    </f:facet>
+				<h:outputText value="#{person.streetName}" />
+			</p:column>
+
+			<p:column sortBy="#{person.phoneNumber}">
+				<f:facet name="header">
+    	        	<h:outputText value="Phone number" />
+        	    </f:facet>
+				<h:outputText value="#{person.phoneNumber}" />
+			</p:column>
+
+			<p:column sortBy="#{person.mobilePhoneNumber}">
+				<f:facet name="header">
+    	        	<h:outputText value="Mobile phone number" />
+        	    </f:facet>
+				<h:outputText value="#{person.mobilePhoneNumber}" />
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>

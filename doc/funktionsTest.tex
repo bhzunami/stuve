@@ -1,0 +1,75 @@
+\part{TESTS}
+%
+\newpage
+%
+\section{Funktionstest}
+\subsection{Installation}
+Bevor die Web-Applikation verwendet werden kann, muss sie installiert bzw. konfiguriert werden.
+Diese Konfigurationen müssen auch getestet werden.
+%
+\begin{table}[ht]
+\caption{Funktionstests: Installation}
+\begin{tabular}{p{5cm}p{8cm}| p{1cm}}
+  \toprule
+  \textbf{Programm} & \textbf{Was} &  \textbf{OK}\\
+  \midrule
+  \multirow{3}{*}{Apache-Tomcat} & Installiert & \\
+   \cmidrule{2-3}
+   & User zu \textit{Manager-Gui hinzugefügt} & \\
+   \cmidrule{2-3}
+   & Startseite von Tomcat kommt & \\
+  \midrule
+  \multirow{3}{*}{Maven} & Installiert & \\
+   \cmidrule{2-3}
+   & Maven Pfad gesetzt das \textit{mvn -v} funktioniert & \\
+  \midrule
+  \multirow{3}{*}{Mysql} & Installiert & \\
+   \cmidrule{2-3}
+   & Mysql-Konfiguration unter \textit{src/main/resources/jdbc.properties} auf eigene Datenbank anpassen & \\
+  \midrule
+  \multirow{3}{*}{Applikation} & Neuste Version ausgecheckt (SVN). & \\
+   \cmidrule{2-3}
+   & Der Befehl  \textit{mvn package} geht ohne Befehle durch & \\
+  \bottomrule
+\end{tabular}
+\end{table}
+%%
+\\Die Datenbank wird automatisch generiert, wenn der \textit{Username} und das \textit{Passwort} richtig gesetzt sind.
+%
+\newpage
+%
+\subsection{Applikation}
+\begin{table}[ht]
+\caption{Funktionstests: Applikation}
+\begin{tabular}{p{4cm}p{9cm}| p{1cm}}
+  \toprule
+  \textbf{Seite} & \textbf{Was} &  \textbf{OK}\\
+  \midrule
+  \multirow{3}{*}{Hauptseite} & Web-Applikation wurde installiert & \\
+   \cmidrule{2-3}
+   & Webseite wird unter localhost:8080/stuve\footnotemark[1] angezeigt & \\
+  \midrule
+  \multirow{3}{*}{Personen liste} & Gespeicherte Personen werden angezeigt & \\
+   \cmidrule{2-3}
+   & gespeicherte Personen lassen sich auswählen & \\
+   \cmidrule{2-3}
+   & Es kann nach Personen gesucht werden & \\
+   \cmidrule{2-3}
+   & Wenn mehr als 50 Personen auftauchen, werden diese auf der zweiten Seite angezeigt & \\
+  \midrule
+  \multirow{3}{*}{Person Detail} & Alle Felder vorhanden & \\
+   \cmidrule{2-3}
+   & Wenn nicht alle Pflichtfelder ausgefüllt sind, kommt eine Fehlermeldung & \\
+   \cmidrule{2-3}
+   & Person kann bearbeitet werden & \\
+   \cmidrule{2-3}
+   & Person neu erstellt werden & \\
+   \cmidrule{2-3}
+   & Alle Felder können gelöscht werden, ohne dass die Person gelöscht wird & \\
+   \cmidrule{2-3}
+   & Person kann gelöscht werden & \\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\newpage

@@ -1,0 +1,60 @@
+%
+\documentclass[12pt,a4paper,german]{article}%{scrartcl}
+%
+\input{./use.tex}
+
+\pagestyle{fancy}
+
+% KOPF UND FUSS ZEILEN
+\fancyhf{}
+\fancyhead[L]{Modul 233}
+\fancyhead[R]{Nicolas Mauchle}
+\renewcommand{\headrulewidth}{0.5pt}
+%
+\fancyfoot[L]{stuve-v1.0}
+\fancyfoot[R]{Seite  \thepage  von  \pageref{LastPage}}
+
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%
+\makeindex
+%
+\begin{document}
+%
+\input{./titlePage.tex}
+%
+\input{./documentmanagement.tex}
+\tableofcontents
+\newpage
+
+% ******** MANAGEMENT SUMMARY ********
+\input{./managementSummary.tex}
+%
+% ******** EINLEITUNG ********
+\input{./einleitung.tex}
+%
+% ******** PFLICHTENHEFT ********
+\input{./pflichtenheft.tex}
+%
+% ******** OOA ********
+\input{./ooa.tex}
+%
+% ******** OOP ********
+\input{./oop.tex}
+%
+% ******** FUNKTION TESTS ********
+\input{./funktionsTest.tex}
+%
+% ******** FAZIT ********
+\input{./fazit.tex}
+%
+% ******** FAZIT ********
+\input{./arbeitsjournal.tex}
+%
+% ******** LITERATUR HINWEIS ********
+\input{./literaturhinweis.tex}
+%
+% ******** FAZIT ********
+\input{./glossar.tex}
+%
+\end{document}
